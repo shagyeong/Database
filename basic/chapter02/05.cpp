@@ -1,17 +1,17 @@
-//while 예제
+//do-while 예제
 #include<iostream>
 using namespace std;
 
 int main(void){
     int countdown;
 
-    cout << "how many greetings do you want?";
+    cout << "how many greetings do you want? : ";
     cin >> countdown;
 
-    while(countdown > 0){
+    do{
         cout << "hello" << endl;
         countdown -= 1;
-    }
+    }while(countdown > 0);
 
     return 0;
 }
