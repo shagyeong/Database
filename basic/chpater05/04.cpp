@@ -25,20 +25,58 @@ int main(void){
 }
 
 void inputdata(int arr[], int lastplantnumber){
-    
+    for(int plantnumber = 1;
+        plantnumber <= lastplantnumber;
+        plantnumber++){
+        cout << endl
+             << "enter production data for plant number "
+             << plantnumber
+             << endl;
+
+        gettotal(arr[plantnumber - 1]);
+            
+    }
 }
+
 void scale(int arr[], int size){
+    for(int index = 0; index < size; index++){
+        arr[index] = round(arr[index] / 1000.0);
+    }
 
 }
 void graph(const int astreriskcount[], int lastplantnumber){
+    cout << "\nunits produced in thousands of units : \n";
 
+    for(int plantnumber = 1;
+        plantnumber <= lastplantnumber;
+        plantnumber++){
+        cout << "plant #" << plantnumber << " ";
+        printasterisks(astreriskcount[plantnumber - 1]);
+        cout << endl;
+    }
 }
 void gettotal(int& sum){
+    cout << "enter number of units produced by each department.\n"
+         << "append a negative number to the end of the list.\n";
+
+    sum = 0;
+    int next;
+
+    cin >> next;
+
+    while(next >= 0){
+        sum = sum + next;
+        cin >> next;
+    }   
+
+    cout << "total : " << sum << endl;
 
 }
 int round2(double number){
-
+    return static_cast<int>(floor(number + 00.5));
 }
 void printasterisks(int n){
-
+    for(int count = 0; count < n; count++){
+        cout << "*";
+    }
 }
