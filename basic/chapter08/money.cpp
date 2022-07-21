@@ -1,4 +1,5 @@
-//클래스 외부에서 연산자 오버로드
+//대부분의 예제는 클래스 money의 변형
+//기본형을 선언해둠
 #include<iostream>
 #include<cstdlib>
 #include<cmath>
@@ -28,36 +29,18 @@ class money{
         int round(double number) const;
 };
 
-const money operator+(const money& money1, const money& money2);
-const money operator-(const money& money1, const money& money2);
-bool operator==(const money& money1, const money& money2);
-const money operator-(const money& money1); //부정연산자
-
 int main(void){
-    money yourAmount;
-    money myAmount(10, 9);
-    cout << "Enter an amount of money: ";
-    yourAmount.inmoney( );
+    money m1;
+    money m2(10.21);
+    money m3(22);
+    money m4(11, 23);
 
-    cout << "Your amount is "; 
-    yourAmount.outmoney( ); 
-    cout << endl;
-    cout << "My amount is "; 
-    myAmount.outmoney( ); 
-    cout << endl;
+    m1.inmoney();
 
-    if (yourAmount == myAmount)
-        cout << "We have the same amounts.\n";
-    else
-        cout << "One of us is richer.\n";
-
-    money ourAmount = yourAmount + myAmount;
-    yourAmount.outmoney( ); cout << " + "; myAmount.outmoney( ); 
-    cout << " equals "; ourAmount.outmoney( ); cout << endl;
-
-    money diffAmount = yourAmount - myAmount;
-    yourAmount.outmoney( ); cout << " - "; myAmount.outmoney( ); 
-    cout << " equals "; diffAmount.outmoney( ); cout << endl;
+    m1.outmoney();
+    m2.outmoney();
+    m3.outmoney();
+    m4.outmoney();
 
     return 0;
 }
@@ -127,29 +110,3 @@ int money::centpart(double damount) const{
 //int money::round(double number) const{
 //
 //}
-
-//연산자 오버로드
-const money operator+(const money& money1, const money& money2){
-    double damount3;
-    damount3 = money1.getamount() + money2.getamount();
-    
-    return money(damount3);
-}
-const money operator-(const money& money1, const money& money2){
-    double damount3;
-    damount3 = money1.getamount() - money2.getamount();
-    
-    return money(damount3);
-}
-bool operator==(const money& money1, const money& money2){
-    return (
-        (money1.getdollar() == money2.getdollar())&&
-        (money1.getcent() == money2.getcent())
-    );
-}
-const money operator-(const money& money1){
-    return money(
-        -money1.getdollar(),
-        -money1.getcent()
-    );
-}
