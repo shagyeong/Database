@@ -7,12 +7,18 @@ using namespace std;
 int main(void){
     linkedlist ll1;
 
-    ll1.append(16);
-    ll1.append(18);
-    //ll1.append(19);
-    //ll1.append(20);
-
-    ll1.sneaky();
+    ll1.append(11);
+    ll1.append(12);
+    ll1.append(13);
+    ll1.append(14);
+    ll1.append(15);
+    
+    ll1.append(11);
+    ll1.append(11);
+    ll1.append(11);
+    ll1.append(11);
+    
+    cout << ll1.count(11) << endl;
 
     return 0;
 }

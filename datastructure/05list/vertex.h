@@ -7,6 +7,7 @@ class vertex{
         vertex();
         vertex(int itemv);
         vertex(int itemv, vertex* nextv);
+        vertex(const vertex& vertexv);
         
         int getitem(void);
         vertex* getnext(void);
@@ -31,6 +32,11 @@ vertex::vertex(int itemv){
 vertex::vertex(int itemv, vertex* nextv){
     item = itemv;
     next = nextv;
+}
+vertex::vertex(const vertex& vertexv){
+    cout << "copy constructor called" << endl;
+    item = vertexv.item;
+    next = vertexv.next;
 }
 
 int vertex::getitem(void){
