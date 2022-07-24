@@ -19,7 +19,7 @@ class linkedlist{
         int size(void);
         void cleanse(void); //모든 요소 삭제
         int count(int itemv);
-        //extend
+        //extend(const linkedlist& linkedlistv)
         //copy
         //reverse
         //sort
