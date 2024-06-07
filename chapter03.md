@@ -127,9 +127,69 @@ ChangepasswordService pwdsvc = new ChangepasswordService(memdao);
 ```
 
 ## 3.4 예제 프로젝트 만들기
+### 개요
+#### 예제 코드 명시
+* 코드가 정상적으로 작동하는 것을 확인한 후 옮겨붙이기
+#### 파일 트리
+* src/main
+    * assembler
+        * Assembler.java
+    * java/ch03
+        * Member.java
+            * id
+            * email
+            * password
+            * name
+            * registerdatetime
+            * getter/setter
+            * changepassword(String oldpw, String newpw)
+        * WrongIdPasswordException.java
+            * extends RuntimeException
+        * MemberDao.java
+            * nextid
+            * map
+            * selectbyemail(String email)
+            * insert(Member member)
+            * update(Member member)
+        * RegisterRequest.java
+            * email
+            * password
+            * confirmpassword
+            * name
+            * getter/setter
+            * ispasswordequaltoconfirmpassword()
+        * DuplicateMemberException.java
+            * extends RuntimeException
+        * ChangePasswordService.java
+            * memdao
+            * setter
+            * changepassword(String email, String oldpw, String newpw)
+        * MemberNotFoundException.java
 ### 3.4.1 회원 데이터 관련 클래스
+#### Member.java
+```java
+```
+
+#### WrongIdPasswordException.java
+```java
+```
+#### MemberDao.java
+```java
+```
 ### 3.4.2 회원 가입 처리 관련 클래스
+#### RegisterRequest.java
+```java
+```
+#### DuplicateMemberException.java
+```java
+```
 ### 3.4.3 암호 변경 관련 클래스
+#### ChangePasswordService.java
+```java
+```
+#### MemberNotFoundException.java
+```java
+```
 
 ## 3.5 객체 조립기
 
