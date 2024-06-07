@@ -9,13 +9,11 @@ public class Member{
     private LocalDateTime registerdatetime;
     
     public Member(
-        Long id,
         String email,
         String password,
         String name,
         LocalDateTime registerdatetime
     ){
-        this.id = id;
         this.email = email;
         this.password = password;
         this.name = name;
