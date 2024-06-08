@@ -208,7 +208,10 @@ cpwsvc.changepassword("shagyeong@noj.am", "1234", "2222");
 ```
 * assembler.getchangepasswordservice() : 조립기에서 생성한 객체이므로 **memberdao 객체가 주입되어 있음**
 ### 3.5.1 조립기 사용 예제
-* ...
+#### mainforassembler.java
+```java
+
+```
 
 ## 3.6 스프링의 DI 설정
 ### 3.6.1 스프링을 이용한 객체 조립과 사용
