@@ -1,6 +1,9 @@
 ﻿// 모듈을 추출합니다.
+var http = require('http');
 var express = require('express');
 var bodyParser = require('body-parser');
+var app = express();
+
 // 변수를 선언합니다.
 var items = [{
     name: '우유',
@@ -12,8 +15,6 @@ var items = [{
     name: '커피',
     price: '5000'
 }];
-// 웹 서버를 생성합니다.
-var app = express();
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: false }));
 // /data.html => path 이름
