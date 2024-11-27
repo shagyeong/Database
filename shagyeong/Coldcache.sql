@@ -12,34 +12,6 @@ Use Coldcache;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-/*-----------------------------customer-----------------------------*/
-DROP TABLE IF EXISTS `customer`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `customer`(
-    `customer_id` varchar(10) NOT NULL,
-    `name` varchar(20) NOT NULL,
-    `contact_info` varchar(10) NOT NULL,
-    `sex` varchar(1) NOT NULL,
-    PRIMARY KEY (`customer_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-LOCK TABLES `customer` WRITE;
-/*!40000 ALTER TABLE `customer` DISABLE KEYS */;
-INSERT INTO `customer` VALUES
-    ('15-3215', 'Kim',  '012-12-345', 'F'),
-    ('14-8964', 'Park', '012-69-874', 'M'),
-    ('16-2166', 'Kim',  '012-61-236', 'F'),
-    ('17-8457', 'Shin', '012-54-897', 'M'),
-    ('13-2653', 'Lee',  '012-56-213', 'F'),
-    ('14-2124', 'Choi', '012-21-234', 'M'),
-    ('15-8955', 'Son',  '012-59-875', 'F'),
-    ('11-2641', 'Kim',  '012-46-231', 'M'),
-    ('17-9547', 'Kim',  '012-45-987', 'F'),
-    ('11-4651', 'Lee',  '012-56-421', 'M');
-/*!40000 ALTER TABLE `customer` ENABLE KEYS */;
-UNLOCK TABLES;
-
 /*-----------------------------category-----------------------------*/
 DROP TABLE IF EXISTS `category`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -128,31 +100,59 @@ INSERT INTO `inventory` VALUES
 /*!40000 ALTER TABLE `inventory` ENABLE KEYS */;
 UNLOCK TABLES;
 
-/*-----------------------------reservation-----------------------------*/
-DROP TABLE IF EXISTS `reservation`;
+/*-----------------------------customer-----------------------------*/
+DROP TABLE IF EXISTS `customer`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `reservation`(
-    `reservation_id` varchar(10) NOT NULL,
+CREATE TABLE `customer`(
+    `customer_id` varchar(10) NOT NULL,
+    `name` varchar(20) NOT NULL,
+    `contact_info` varchar(10) NOT NULL,
+    `sex` varchar(1) NOT NULL,
+    PRIMARY KEY (`customer_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+LOCK TABLES `customer` WRITE;
+/*!40000 ALTER TABLE `customer` DISABLE KEYS */;
+INSERT INTO `customer` VALUES
+    ('15-3215', 'Kim',  '012-12-345', 'F'),
+    ('14-8964', 'Park', '012-69-874', 'M'),
+    ('16-2166', 'Kim',  '012-61-236', 'F'),
+    ('17-8457', 'Shin', '012-54-897', 'M'),
+    ('13-2653', 'Lee',  '012-56-213', 'F'),
+    ('14-2124', 'Choi', '012-21-234', 'M'),
+    ('15-8955', 'Son',  '012-59-875', 'F'),
+    ('11-2641', 'Kim',  '012-46-231', 'M'),
+    ('17-9547', 'Kim',  '012-45-987', 'F'),
+    ('11-4651', 'Lee',  '012-56-421', 'M');
+/*!40000 ALTER TABLE `customer` ENABLE KEYS */;
+UNLOCK TABLES;
+
+/*-----------------------------reserves-----------------------------*/
+DROP TABLE IF EXISTS `reserves`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `reserves`(
+    `reserves_id` varchar(10) NOT NULL,
     `customer_id` varchar(10) NOT NULL,
     `product_id` varchar(10) NOT NULL,
-    `reservation_date` varchar(10) NOT NULL,
+    `reserves_date` varchar(10) NOT NULL,
     `pickup_date` varchar(10) NOT NULL,
     `status_varchar` varchar(10) NOT NULL,
-    PRIMARY KEY (`reservation_id`),
+    PRIMARY KEY (`reserves_id`),
     KEY `product_id` (`product_id`),
     KEY `customer_id` (`customer_id`),
-    CONSTRAINT `reservation_fk1` FOREIGN KEY (`customer_id`)
+    CONSTRAINT `reserves_fk1` FOREIGN KEY (`customer_id`)
     REFERENCES `customer`(`customer_id`) ON DELETE CASCADE,
-    CONSTRAINT `reservation_fk2` FOREIGN KEY (`product_id`)
+    CONSTRAINT `reserves_fk2` FOREIGN KEY (`product_id`)
     REFERENCES `product`(`product_id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-LOCK TABLES `reservation` WRITE;
-/*!40000 ALTER TABLE `reservation` DISABLE KEYS */;
-INSERT INTO `reservation` VALUES
+LOCK TABLES `reserves` WRITE;
+/*!40000 ALTER TABLE `reserves` DISABLE KEYS */;
+INSERT INTO `reserves` VALUES
     ('241127-001', '15-3215', 'DAIR-001', '2024-11-27', '2024-12-01', 'valid');
-/*!40000 ALTER TABLE `reservation` ENABLE KEYS */;
+/*!40000 ALTER TABLE `reserves` ENABLE KEYS */;
 UNLOCK TABLES;
 
 
