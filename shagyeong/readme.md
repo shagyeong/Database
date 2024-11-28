@@ -41,14 +41,19 @@
 * 행사 여부에 관계없이 장바구니에서 구매시 상품 튜플이 삽입됨
 * 본인의 결제 내역 조회시 customer_id로 select
 #### event_product(행사 상품)
-* <u>product_id</u>
-* description : 행사 내용(1+1, 2+1, 10% 할인 등등)
-* duration varchar(23) : 행사 기간 0000-00-00 ~ 0000-00-00 형태
+* 속성
+    * <u>product_id</u>
+    * event_description : 행사 내용(1+1, 2+1, 10% 할인 등등)
+    * duration varchar(23) : 행사 기간 0000-00-00 ~ 0000-00-00 형태
+* 'description'이 MySQL 예약어로 존재하여 속성명 변경 'description' -> 'event_description'
 #### save_event_product(증정품 보관함)
-* 장바구니에서 행사 상품 구매시 상품 튜플이 삽입됨
+* 속성
+    * <u>customer_id</u>
+    * <u>product_id</u>
+    * quantity : 수량
 #### *마이페이지*
 <!-- 로그인 구현시 사용자 정보 띄움 -->
-### *inventory(재고 관리)*
+#### *inventory(재고 관리)*
 <!--* <u>product_id varchar(10)</u> : 상품 ID
 * <u>expire_date varchar(10)</u> : 유통기한 0000-00-00 형태
 * stock_quantity decimal(10) : 재고
@@ -58,6 +63,10 @@
 ### show tables<br><img src='./sqldemo/show_tables.png'>
 ### category<br><img src='./sqldemo/category.png'>
 ### product<br><img src='./sqldemo/product.png'>
-### inventory<br><img src='./sqldemo/inventory.png'>
+<!-- ### inventory<br><img src='./sqldemo/inventory.png'> -->
 ### customer<br><img src='./sqldemo/customer.png'>
 ### reserves<br><img src='./sqldemo/reserves.png'>
+### cart<br><img src='./sqldemo/cart.png'>
+### payment<br><img src='./sqldemo/payment.png'>
+### event_product<br><img src='./sqldemo/event_product.png'>
+### save_event_product<br><img src='./sqldemo/save_event_product.png'>

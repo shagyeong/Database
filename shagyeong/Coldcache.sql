@@ -77,28 +77,28 @@ INSERT INTO `product` VALUES
 UNLOCK TABLES;
 
 /*-----------------------------inventory-----------------------------*/
-DROP TABLE IF EXISTS `inventory`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `inventory`(
-    `product_id` varchar(10) NOT NULL,
-    `expire_date` varchar(10) NOT NULL,
-    `stock_quantity` decimal(10) NOT NULL,
-    PRIMARY KEY (`product_id`, `expire_date`),
-    KEY `product_id` (`product_id`),
-    CONSTRAINT `inventory_fk_1` FOREIGN KEY (`product_id`)
-    REFERENCES `product`(`product_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-LOCK TABLES `inventory` WRITE;
-/*!40000 ALTER TABLE `inventory` DISABLE KEYS */;
-INSERT INTO `inventory` VALUES
-    /*예제 데이터 : 케이크 유통기한별 재고*/
-    ('BAKE-002', '2024-12-01', 21),
-    ('BAKE-002', '2025-01-01', 50),
-    ('BAKE-002', '2025-02-01', 50);
-/*!40000 ALTER TABLE `inventory` ENABLE KEYS */;
-UNLOCK TABLES;
+/*DROP TABLE IF EXISTS `inventory`;*/
+/*/*!40101 SET @saved_cs_client     = @@character_set_client */;*/
+/*/*!40101 SET character_set_client = utf8 */;*/
+/*CREATE TABLE `inventory`(*/
+/*    `product_id` varchar(10) NOT NULL,*/
+/*    `expire_date` varchar(10) NOT NULL,*/
+/*    `stock_quantity` decimal(10) NOT NULL,*/
+/*    PRIMARY KEY (`product_id`, `expire_date`),*/
+/*    KEY `product_id` (`product_id`),*/
+/*    CONSTRAINT `inventory_fk_1` FOREIGN KEY (`product_id`)*/
+/*    REFERENCES `product`(`product_id`) ON DELETE CASCADE*/
+/*) ENGINE=InnoDB DEFAULT CHARSET=utf8;*/
+/*/*!40101 SET character_set_client = @saved_cs_client */;*/
+/*LOCK TABLES `inventory` WRITE;*/
+/*/*!40000 ALTER TABLE `inventory` DISABLE KEYS */;*/
+/*INSERT INTO `inventory` VALUES*/
+/*    /*예제 데이터 : 케이크 유통기한별 재고*/*/
+/*    ('BAKE-002', '2024-12-01', 21),*/
+/*    ('BAKE-002', '2025-01-01', 50),*/
+/*    ('BAKE-002', '2025-02-01', 50);*/
+/*/*!40000 ALTER TABLE `inventory` ENABLE KEYS */;*/
+/*UNLOCK TABLES;*/
 
 /*-----------------------------customer-----------------------------*/
 DROP TABLE IF EXISTS `customer`;
@@ -128,33 +128,104 @@ INSERT INTO `customer` VALUES
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 UNLOCK TABLES;
 
-/*-----------------------------reserves-----------------------------*/
-DROP TABLE IF EXISTS `reserves`;
+/*-----------------------------cart-----------------------------*/
+DROP TABLE IF EXISTS `cart`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `reserves`(
-    `reserves_id` varchar(10) NOT NULL,
+CREATE TABLE `cart`(
+    `cart_id` varchar(10) NOT NULL,
     `customer_id` varchar(10) NOT NULL,
     `product_id` varchar(10) NOT NULL,
-    `reserves_date` varchar(10) NOT NULL,
+    `cart_date` varchar(10) NOT NULL,
     `pickup_date` varchar(10) NOT NULL,
     `status_varchar` varchar(10) NOT NULL,
-    PRIMARY KEY (`reserves_id`),
-    KEY `product_id` (`product_id`),
+    PRIMARY KEY (`cart_id`),
     KEY `customer_id` (`customer_id`),
-    CONSTRAINT `reserves_fk1` FOREIGN KEY (`customer_id`)
+    KEY `product_id` (`product_id`),
+    CONSTRAINT `cart_fk1` FOREIGN KEY (`customer_id`)
     REFERENCES `customer`(`customer_id`) ON DELETE CASCADE,
-    CONSTRAINT `reserves_fk2` FOREIGN KEY (`product_id`)
+    CONSTRAINT `cart_fk2` FOREIGN KEY (`product_id`)
     REFERENCES `product`(`product_id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-LOCK TABLES `reserves` WRITE;
-/*!40000 ALTER TABLE `reserves` DISABLE KEYS */;
-INSERT INTO `reserves` VALUES
+LOCK TABLES `cart` WRITE;
+/*!40000 ALTER TABLE `cart` DISABLE KEYS */;
+INSERT INTO `cart` VALUES
     ('241127-001', '15-3215', 'DAIR-001', '2024-11-27', '2024-12-01', 'valid');
-/*!40000 ALTER TABLE `reserves` ENABLE KEYS */;
+/*!40000 ALTER TABLE `cart` ENABLE KEYS */;
 UNLOCK TABLES;
 
+/*-----------------------------payment-----------------------------*/
+DROP TABLE IF EXISTS `payment`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `payment`(
+    `customer_id` varchar(10) NOT NULL,
+    `product_id` varchar(10) NOT NULL,
+    `payment_date` varchar(10) NOT NULL,
+    `product_name` varchar(10) NOT NULL,
+    `quantity` decimal(10) NOT NULL,
+    `total_payment` decimal(10) NOT NULL,
+    PRIMARY KEY (`customer_id`, `product_id`, `payment_date`),
+    KEY `customer_id` (`customer_id`),
+    KEY `product_id` (`product_id`),
+    CONSTRAINT `payment_fk1` FOREIGN KEY (`customer_id`)
+    REFERENCES `customer`(`customer_id`) ON DELETE CASCADE,
+    CONSTRAINT `payment_fk2` FOREIGN KEY (`product_id`)
+    REFERENCES `product`(`product_id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+LOCK TABLES `payment` WRITE;
+/*!40000 ALTER TABLE `payment` DISABLE KEYS */;
+INSERT INTO `payment` VALUES
+    ('15-3215', 'BEVE-001', '2024-11-01', 'Energy', 3, 4600);
+/*!40000 ALTER TABLE `payment` ENABLE KEYS */;
+UNLOCK TABLES;
+
+/*-----------------------------event_product-----------------------------*/
+DROP TABLE IF EXISTS `event_product`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `event_product`(
+    `product_id` varchar(10) NOT NULL,
+    `event_description` varchar(20) NOT NULL,
+    `duration` varchar(23) NOT NULL,
+    PRIMARY KEY (`product_id`),
+    KEY `product_id` (`product_id`),
+    CONSTRAINT `event_product_fk1` FOREIGN KEY (`product_id`)
+    REFERENCES `prodcut`(`product_id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+LOCK TABLES `event_product` WRITE;
+/*!40000 ALTER TABLE `event_product` DISABLE KEYS */;
+INSERT INTO `event_product` VALUES
+    ('BEVE-001', '2 + 1', '2024-11-01 ~ 2024-12-31');
+/*!40000 ALTER TABLE `event_product` ENABLE KEYS */;
+UNLOCK TABLES;
+
+/*-----------------------------save_event_product-----------------------------*/
+DROP TABLE IF EXISTS `save_event_product`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `save_event_product`(
+    `customer_id` varchar(10) NOT NULL,
+    `product_id` varchar(10) NOT NULL,
+    `quantity` decimal(10) NOT NULL,
+    PRIMARY KEY (`customer_id`, `product_id`),
+    KEY `customer_id` (`customer_id`),
+    KEY `product_id` (`product_id`),
+    CONSTRAINT `save_event_product_fk1` FOREIGN KEY (`customer_id`)
+    REFERENCES `customer` (`customer_id`) ON DELETE CASCADE,
+    CONSTRAINT `save_event_product_fk2` FOREIGN KEY (`product_id`)
+    REFERENCES `product` (`product_id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+LOCK TABLES `save_event_product` WRITE;
+/*!40000 ALTER TABLE `save_event_product` DISABLE KEYS */;
+INSERT INTO `save_event_product` VALUES
+    ('15-3215', 'BEVE-001', 1);
+/*!40000 ALTER TABLE `save_event_product` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
