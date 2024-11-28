@@ -65,7 +65,6 @@
 ### product<br><img src='./sqldemo/product.png'>
 <!-- ### inventory<br><img src='./sqldemo/inventory.png'> -->
 ### customer<br><img src='./sqldemo/customer.png'>
-### reserves<br><img src='./sqldemo/reserves.png'>
 ### cart<br><img src='./sqldemo/cart.png'>
 ### payment<br><img src='./sqldemo/payment.png'>
 ### event_product<br><img src='./sqldemo/event_product.png'>
