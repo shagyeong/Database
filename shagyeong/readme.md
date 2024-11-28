@@ -18,7 +18,7 @@
 * stock_quantity decimal(10) : 재고
 * 상품ID와 유통기한으로 튜플을 고유하게 식별해 재고 관리하도록 함
 ### customer
-* <u>customer_idvarchar(10)</u> : 고객 ID
+* <u>customer_id varchar(10)</u> : 고객 ID
 * name varchar(20) : 이름
 * contact_info varchar(10) : 연락처
 * sex varchar(1) : 성별
@@ -31,6 +31,10 @@
 * status_varchar varchar(10) : 상태
 * customer, product간 관계 릴레이션이므로 'reservation'이 아닌 'reserves'로 명명
 
+#### popular_products
+#### sales(매출)
+#### event_sales
+#### event_product
 
 # demo
 ### show tables<br><img src='./sqldemo/show_tables.png'>
