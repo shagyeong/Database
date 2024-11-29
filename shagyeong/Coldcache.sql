@@ -77,28 +77,7 @@ INSERT INTO `product` VALUES
 UNLOCK TABLES;
 
 /*-----------------------------inventory-----------------------------*/
-/*DROP TABLE IF EXISTS `inventory`;*/
-/*/*!40101 SET @saved_cs_client     = @@character_set_client */;*/
-/*/*!40101 SET character_set_client = utf8 */;*/
-/*CREATE TABLE `inventory`(*/
-/*    `product_id` varchar(10) NOT NULL,*/
-/*    `expire_date` varchar(10) NOT NULL,*/
-/*    `stock_quantity` decimal(10) NOT NULL,*/
-/*    PRIMARY KEY (`product_id`, `expire_date`),*/
-/*    KEY `product_id` (`product_id`),*/
-/*    CONSTRAINT `inventory_fk_1` FOREIGN KEY (`product_id`)*/
-/*    REFERENCES `product`(`product_id`) ON DELETE CASCADE*/
-/*) ENGINE=InnoDB DEFAULT CHARSET=utf8;*/
-/*/*!40101 SET character_set_client = @saved_cs_client */;*/
-/*LOCK TABLES `inventory` WRITE;*/
-/*/*!40000 ALTER TABLE `inventory` DISABLE KEYS */;*/
-/*INSERT INTO `inventory` VALUES*/
-/*    /*예제 데이터 : 케이크 유통기한별 재고*/*/
-/*    ('BAKE-002', '2024-12-01', 21),*/
-/*    ('BAKE-002', '2025-01-01', 50),*/
-/*    ('BAKE-002', '2025-02-01', 50);*/
-/*/*!40000 ALTER TABLE `inventory` ENABLE KEYS */;*/
-/*UNLOCK TABLES;*/
+
 
 /*-----------------------------customer-----------------------------*/
 DROP TABLE IF EXISTS `customer`;
@@ -136,12 +115,10 @@ CREATE TABLE `cart`(
     `cart_id` varchar(10) NOT NULL,
     `customer_id` varchar(10) NOT NULL,
     `product_id` varchar(10) NOT NULL,
-    `cart_date` varchar(10) NOT NULL,
-    `pickup_date` varchar(10) NOT NULL,
-    `status_varchar` varchar(10) NOT NULL,
+    `name` varchar(10) NOT NULL,
+    `price` DECIMAL(10) NOT NULL,
     PRIMARY KEY (`cart_id`),
     KEY `customer_id` (`customer_id`),
-    KEY `product_id` (`product_id`),
     CONSTRAINT `cart_fk1` FOREIGN KEY (`customer_id`)
     REFERENCES `customer`(`customer_id`) ON DELETE CASCADE,
     CONSTRAINT `cart_fk2` FOREIGN KEY (`product_id`)
@@ -151,7 +128,7 @@ CREATE TABLE `cart`(
 LOCK TABLES `cart` WRITE;
 /*!40000 ALTER TABLE `cart` DISABLE KEYS */;
 INSERT INTO `cart` VALUES
-    ('241127-001', '15-3215', 'DAIR-001', '2024-11-27', '2024-12-01', 'valid');
+    ('241127-001', '15-3215', 'DAIR-001', 'Milk', 5500);
 /*!40000 ALTER TABLE `cart` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -168,7 +145,6 @@ CREATE TABLE `payment`(
     `total_payment` decimal(10) NOT NULL,
     PRIMARY KEY (`customer_id`, `product_id`, `payment_date`),
     KEY `customer_id` (`customer_id`),
-    KEY `product_id` (`product_id`),
     CONSTRAINT `payment_fk1` FOREIGN KEY (`customer_id`)
     REFERENCES `customer`(`customer_id`) ON DELETE CASCADE,
     CONSTRAINT `payment_fk2` FOREIGN KEY (`product_id`)
@@ -188,6 +164,8 @@ DROP TABLE IF EXISTS `event_product`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `event_product`(
     `product_id` varchar(10) NOT NULL,
+    `name` varchar(10) NOT NULL,
+    `price` DECIMAL(10) NOT NULL,
     `event_description` varchar(20) NOT NULL,
     `duration` varchar(23) NOT NULL,
     PRIMARY KEY (`product_id`),
@@ -199,7 +177,16 @@ CREATE TABLE `event_product`(
 LOCK TABLES `event_product` WRITE;
 /*!40000 ALTER TABLE `event_product` DISABLE KEYS */;
 INSERT INTO `event_product` VALUES
-    ('BEVE-001', '2 + 1', '2024-11-01 ~ 2024-12-31');
+    ('BEVE-001', 'Energy', 2300 ,'2 + 1', '2024-11-01 ~ 2024-12-31'),
+    ('SNAC-001', 'Dtos', 2000, '1 + 1', '2024-11-01 ~ 2024-11-30'),
+    ('GROC-001', 'Apple', 12000, '1 + 1', '2024-11-19 ~ 2024-11-21'),
+    ('GROC-002', 'Cucumber', 5500, '3 + 2', '2024-12-01 ~ 2024-12-05'),
+    ('CONF-001', 'Snicker', 2000, '4 + 2', '2024-11-30 ~ 2024-12-03'),
+    ('CONF-002', 'Swix', 1200, '2 + 2', '2024-11-20 ~ 2024-11-30'),
+    ('PREP-001', 'Chicken', 5500, '1 + 3', '2024-11-15 ~ 2024-11-27'),
+    ('PREP-002', 'Pasta', 4200, '2 + 3', '2024-12-01 ~ 2024-12-31'),
+    ('MEAT-001', 'Beef', 4500, '1 + 1', '2024-11-29 ~ 재료 소진 까지'),
+    ('MEAT-002', 'Pork', 3000, '1 + 1', '2024-11-29 ~ 재료 소진 까지');
 /*!40000 ALTER TABLE `event_product` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -210,10 +197,11 @@ DROP TABLE IF EXISTS `save_event_product`;
 CREATE TABLE `save_event_product`(
     `customer_id` varchar(10) NOT NULL,
     `product_id` varchar(10) NOT NULL,
+    `name` varchar(10) NOT NULL,
     `quantity` decimal(10) NOT NULL,
+    `save_duration` int Default 3,
     PRIMARY KEY (`customer_id`, `product_id`),
     KEY `customer_id` (`customer_id`),
-    KEY `product_id` (`product_id`),
     CONSTRAINT `save_event_product_fk1` FOREIGN KEY (`customer_id`)
     REFERENCES `customer` (`customer_id`) ON DELETE CASCADE,
     CONSTRAINT `save_event_product_fk2` FOREIGN KEY (`product_id`)
@@ -223,7 +211,7 @@ CREATE TABLE `save_event_product`(
 LOCK TABLES `save_event_product` WRITE;
 /*!40000 ALTER TABLE `save_event_product` DISABLE KEYS */;
 INSERT INTO `save_event_product` VALUES
-    ('15-3215', 'BEVE-001', 1);
+    ('15-3215', 'BEVE-001', 'Energy', 1, 3);
 /*!40000 ALTER TABLE `save_event_product` ENABLE KEYS */;
 UNLOCK TABLES;
 
