@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>로그인</title>
+</head>
+<body>
+    <header>
+        <div class="auth-links">
+            <a href="./signup">회원가입</a> | <a href="./login">로그인</a>
+        </div>
+        <div class="gnbw">
+            <h1 class="logo">
+                <a href="./main" target="self">
+                    <img src="./static/img/gs25.png" alt="GS_logo" width="200px" height="80px">    
+                </a>
+            </h1>
+    
+        </div>
+        <h1>편의점 관리 시스템</h1>
+    </header>
+    
+
+    <nav>
+        <ul>
+            <li><a href="./product">상품 조회</a></li>
+            <li><a href="./promotion_product">행사상품 조회</a></li>
+            <li><a href="./save_promotion">행사상품 보관</a></li>
+            <li><a href="./cart">장바구니</a></li>
+            <li><a href="./mypage">마이페이지</a></li>
+        </ul>
+    </nav>
+
+    <main class="form-container">
+        <form id="loginForm">
+            <label for="loginUsername">사용자 이름</label>
+            <input type="text" id="loginUsername" name="username" required placeholder="사용자 이름을 입력하세요">
+
+            <label for="loginPassword">비밀번호</label>
+            <input type="password" id="loginPassword" name="password" required placeholder="비밀번호를 입력하세요">
+
+            <button type="submit">로그인</button>
+        </form>
+    </main>
+
+    <footer>
+        <p>편의점 관리 시스템 | &copy; 2024</p>
+    </footer>
+</body>
+</html>
