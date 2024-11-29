@@ -63,6 +63,7 @@
                         <form action="/cart" method="POST" style="margin: 0; width: 50%;">
                             <input type="hidden" name="action" value="save">
                             <input type="hidden" name="id" value="{{ cart_item[2] }}">
+                            <input type="number" name="quantity" value="1" min="1" style="width: 50px;">
                             <button type="submit">구매</button>
                         </form>
                     </div>
