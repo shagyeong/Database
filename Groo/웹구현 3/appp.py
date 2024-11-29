@@ -148,10 +148,11 @@ def display_cart():
             try:
                 cursor.execute("SELECT * FROM cart WHERE product_id = %s", (product_id,))
                 product = cursor.fetchone()
+                quantity = int(request.form.get('quantity', 1))
 
                 if product:
-                    cursor.execute("INSERT INTO save_event_product (customer_id, product_id, name, quantity) VALUES (%s, %s, %s, %s)", (product[1], product[2], product[3], 99))
-                    cursor.execute("INSERT INTO payment (customer_id, product_id, payment_date, product_name, quantity, total_payment) VALUES (%s, %s, %s, %s, %s, %s)", (product[1], product[2], '2024-11-29', product[3], 99, product[4]))
+                    cursor.execute("INSERT INTO save_event_product (customer_id, product_id, name, quantity) VALUES (%s, %s, %s, %s)", (product[1], product[2], product[3], quantity))
+                    cursor.execute("INSERT INTO payment (customer_id, product_id, payment_date, product_name, quantity, total_payment) VALUES (%s, %s, %s, %s, %s, %s)", (product[1], product[2], '2024-11-29', product[3], quantity, product[4] * quantity))
                     conn.commit()
                     print("구매 목록에 상품이 추가되었습니다.")
             except Exception as e:
