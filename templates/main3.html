@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>편의점 관리 시스템</title>
+</head>
+<body>
+    <header>
+        <div class="auth-links">
+            <a href="./signup.html">회원가입</a> | <a href="./login.html">로그인</a>
+        </div>
+        <div class="gnbw">
+            <h1 class="logo">
+                <a href="./main3.html" target="self">
+                    <img src="./static/img/gs25.png" alt="GS_logo" width="200px" height="80px">
+                </a>
+            </h1>
+
+        </div>
+        <h1>편의점 관리 시스템</h1>
+    </header>
+
+
+    <nav>
+        <ul>
+            <li><a href="./product">상품 조회</a></li>
+            <li><a href="./promotion_product">행사상품 조회</a></li>
+            <li><a href="./save_promotion">행사상품 보관</a></li>
+            <li><a href="./cart">장바구니</a></li>
+            <li><a href="./mypage">마이페이지</a></li>
+        </ul>
+    </nav>
+
+    <div id="mainBannerContainer" class="banner-container">
+        <div class="banner-slide">
+            <img src="image1.png" alt="배너 1">
+        </div>
+        <div class="banner-slide">
+            <img src="image2.png" alt="배너 2">
+        </div>
+        <div class="banner-slide">
+            <img src="image3.png" alt="배너 3">
+        </div>
+        <div class="banner-controls">
+            <button class="prev">&lt;</button>
+            <button class="next">&gt;</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>이미지 배너 구현 | &copy; 2024</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

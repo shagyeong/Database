@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>상품 조회</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <div class="auth-links">
+            <a href="./signup.html">회원가입</a> | <a href="./login.html">로그인</a>
+        </div>
+        <div class="gnbw">
+            <h1 class="logo">
+                <a href="./main">
+                    <img src="./static/img/gs25.png" alt="GS_logo" width="200px" height="80px">
+                </a>
+            </h1>
+    
+        </div>
+        <h1>상품 조회</h1>
+    </header>
+
+
+    <nav>
+        <ul>
+            <li><a href="./product">상품 조회</a></li>
+            <li><a href="./promotion_product">행사상품 조회</a></li>
+            <li><a href="./save_promotion">행사상품 보관</a></li>
+            <li><a href="./cart">장바구니</a></li>
+            <li><a href="./mypage">마이페이지</a></li>
+        </ul>
+    </nav>
+
+    <div class="search-form">
+        <form action="/product" method="GET">
+            <input type="text" id="search" name="search" placeholder="상품명을 입력하세요" value="{{ search_query }}">
+            <button type="submit">검색</button>
+        </form>
+    </div>
+
+    <h2>검색 결과</h2>
+    <h1>Product Table</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>상품 ID</th>
+                <th>상품 유형</th>
+                <th>상품 이름</th>
+                <th>상품 가격</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+            <tr>
+                <td>{{ product[0] }}</td>
+                <td>{{ product[1] }}</td>
+                <td>{{ product[2] }}</td>
+                <td>{{ product[3] }}원</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <footer>
+        <p>편의점 웹 서비스 | &copy; 2024</p>
+    </footer>
+</body>
+</html>
