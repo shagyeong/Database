@@ -18,5 +18,5 @@ function changeSlide(next = true) {
 document.querySelector('.prev').addEventListener('click', () => changeSlide(false));
 document.querySelector('.next').addEventListener('click', () => changeSlide(true));
 
-// 자동 슬라이드 (5초 간격)
-setInterval(() => changeSlide(true), 5000);
+// 자동 슬라이드 (3초 간격)
+setInterval(() => changeSlide(true), 3000);
