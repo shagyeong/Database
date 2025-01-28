@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="../static/css/style.css">
     <title>편의점 관리 시스템</title>
 </head>
-
 <body>
-
     <header>
         <div class="auth-links">
             <a href="./signup">회원가입</a> | <a href="./login">로그인</a>
@@ -17,14 +14,12 @@
         <div class="gnbw">
             <h1 class="logo">
                 <a href="./main" target="self">
-                    <img src="./static/img/gs25.png" alt="GS_logo" width="200px" height="80px">    
+                <img src="./static/img/gs25.png" alt="GS_logo" width="200px" height="80px">    
                 </a>
             </h1>
-    
         </div>
         <h1>편의점 관리 시스템</h1>
     </header>
-
     <nav>
         <ul>
             <li><a href="./product">상품 조회</a></li>
@@ -34,21 +29,20 @@
             <li><a href="./mypage">마이페이지</a></li>
         </ul>
     </nav>
-
     <div id="mainBannerContainer" class="banner-container">
         <div class="banner-slide">
             <a href="./promotion_product" target="_self">
-                <img src="{{ url_for('static', filename='img/image1.png') }}" alt="배너 1">
+                <img src="../static/img/image1.png" alt="배너 1">
             </a>
         </div>
         <div class="banner-slide">
             <a href="./promotion_product" target="_self">
-                <img src="{{ url_for('static', filename='img/image2.png') }}" alt="배너 2">
+                <img src="../static/img/image2.png" alt="배너 2">
             </a>
         </div>
         <div class="banner-slide">
             <a href="./promotion_product" target="_self"s>
-                <img src="{{ url_for('static', filename='img/image3.png') }}" alt="배너 3">
+                <img src="../static/img/image3.png" alt="배너 3">
             </a>
         </div>
         <div class="banner-controls">
@@ -56,14 +50,11 @@
             <button class="next">&gt;</button>
         </div>
     </div>
-
-
-    <footer id="footer">
+    <footer>
+        <p>편의점 웹 서비스 | &copy; 2024</p>
     </footer>
-
-
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="{{ url_for('static', filename='js/slide.js') }}"></script>
+    <script src="../static/js/slide.js"></script>
     <script>
         // $(function () {
         //     $("#header").load("header.html");
@@ -73,8 +64,6 @@
             $("#footer").load("{{ url_for('static', filename='footer.html') }}");
             // $("#header").load("{{ url_for('static', filename='header.html') }}");
         });
-
     </script>
 </body>
-
 </html>
